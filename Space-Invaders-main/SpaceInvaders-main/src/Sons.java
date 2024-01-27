@@ -9,24 +9,47 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+// Classe para tocar sons
 public class Sons {
-    private Clip clip;
+    private static Sons instance = null;  // Instância única da classe
+    private Clip clip;  // Variável para o som
 
+    private Sons() {}  // Construtor privado para impedir a criação de instâncias
+
+    // Método para obter a instância única da classe
+    public static Sons getInstance() {
+        if (instance == null) {
+            instance = new Sons();
+        }
+        return instance;
+    }
+
+    // Método para tocar música
     public void tocarMusica(String caminho) {
         try {
-            // Only start the music if it's not already playing
-            if (clip == null || !clip.isRunning()) {
-                // Open an audio input stream.
-                File soundFile = new File(caminho); // your music file here
-                AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
-                
-                // Get a sound clip resource.
-                clip = AudioSystem.getClip();
-                
-                // Open audio clip and load samples from the audio input stream.
-                clip.open(audioIn);
-                clip.start();
+            if (clip != null && clip.isRunning()) {
+                clip.stop();
             }
+            File soundFile = new File(caminho);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+            clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Método para tocar som
+    public void tocarSom(String caminho) {
+        try {
+            File soundFile = new File(caminho); // your shoot sound file here
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+            
+            Clip clip = AudioSystem.getClip();
+            
+            clip.open(audioIn);
+            clip.start();
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -36,24 +59,12 @@ public class Sons {
         }
     }
 
-    public void tocarSom(String caminho) {
-        try {
-            // Open an audio input stream.
-            File soundFile = new File(caminho); // your shoot sound file here
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
-            
-            // Get a sound clip resource.
-            Clip clip = AudioSystem.getClip();
-            
-            // Open audio clip and load samples from the audio input stream.
-            clip.open(audioIn);
-            clip.start();
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
+    // Método para parar a música
+    public void pararMusica() {
+        if (clip != null) {
+            clip.stop();
+            clip.close();
+            clip = null;
         }
     }
 }

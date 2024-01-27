@@ -1,31 +1,37 @@
 package src;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.Timer;
 
+// Classe Player que herda de Nave
 public class Player extends Nave {
-
-  
 
     public Player(int vida) {
         setVida(vida);  // Inicializa a vida do player
 
         setSprite("assets/Jogador.png");  // Inicializa o sprite do player
-        int playerX = (getFundoWidth() - getWidth()) / 2;
-        int playerY = getFundoHeight() - getHeight() - 50;
+
+        // Obtém o tamanho da tela em tempo de execução para centralizar o player
+        int screenWidth = getScreenWidth();
+        int screenHeight = getScreenHeight();
+        int playerWidth = getWidth();
+        int playerHeight = getHeight();
+    
+        int playerX = (screenWidth - playerWidth) / 2;
+        int playerY = screenHeight - playerHeight - 50;
         setX(playerX);
         setY(playerY);
     }
 
-    // Método da interface Nave para controlar o disparo do player
-    public boolean atirar(int dano, int velocidade, int cooldown) {
-        if (!getPodeAtirar()) {
+    // Método para atirar
+    public boolean atirar(int dano, int velocidade, int cooldown, String spriteTiroPath) {
+        if (!getPodeAtirar()) {  // Se o atributo podeAtirar for falso, retorna falso
             return false;
         }
 
-        Disparo disparo = new Disparo(dano, velocidade, cooldown, this);
+        Disparo disparo = new Disparo(dano, velocidade, cooldown, spriteTiroPath, this);
         setDisparos(disparo);
         setPodeAtirar(false);
         Timer timer = new Timer(cooldown, new ActionListener() {
@@ -38,6 +44,7 @@ public class Player extends Nave {
         return true;
     }
 
+    // Métodos de movimentação
     public void moverEsquerda() {
         if (getX() > 0) {
             setX(getX() - 10);
@@ -45,8 +52,10 @@ public class Player extends Nave {
     }
 
     public void moverDireita() {
-        if (getX() < getFundoWidth() - getWidth()) {
-            setX(getX() + 10);  // move 10 units to the right
+        int playerWidth = getWidth();
+        int screenWidth = getScreenWidth();
+        if (getX() < screenWidth - playerWidth) {
+            setX(getX() + 10);
         }
     }
 }

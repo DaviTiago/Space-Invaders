@@ -1,28 +1,13 @@
 package src;
 
-public class AlienFraco extends Nave {
-    private int velocidade;
+// Classe AlienFraco que extende de Alien
+public class AlienFraco extends Alien {
 
+    // Possui vida e velocidade menores que os outros aliens
     public AlienFraco() {
         setVida(10);
-        this.velocidade = 5;
+        setVelocidade(5);
 
        setSprite("assets/AlienFraco.png");
-    }
-
-    public boolean atirar(int dano, int velocidade, int cooldown) {
-        return false;
-    }
-
-    public void moverEsquerda() {
-        if (getX() > 0) {
-            setX(getX() - velocidade);
-        }
-    }
-
-    public void moverDireita() {
-        if (getX() < getFundoWidth() - getWidth()) {
-            setX(getX() + velocidade);  // move 10 units to the right
-        }
     }
 }
