@@ -2,17 +2,14 @@
 
 ## Sobre o Projeto
 
-A criação do game Space Invaders teve o intuito de praticar os conceitos de POO (Programação Orientada a Objetos). A linguagem utilizada foi Java.
+A criação do game Space Invaders teve o intuito de praticar os conceitos de Programação Orientada a Objetos (POO) utilizando apenas a linguagem Java e suas bibliotecas.
 
 ## Como Executar
 
 1. **Clone o repositório:**
-2. 
-3. **Navegue até o diretório do projeto:**
-
-4. **Compile o projeto:**
-
-5. **Execute o jogo:**
+2. **Navegue até o diretório do projeto:**
+3. **Compile o arquivo SpaceInvaders.java**
+4. **Para sair do jogo basta iniciar uma partida e apertar Esc**
 
 ## Funcionalidades
 
@@ -28,8 +25,8 @@ A criação do game Space Invaders teve o intuito de praticar os conceitos de PO
 
 ## Imagens do Jogo
 
-![Tela Inicial](caminho/para/imagem/tela_inicial.png)
-![Jogo em Andamento](caminho/para/imagem/jogo_em_andamento.png)
+![Tela Inicial](https://github.com/DaviTiago/Space-Invaders/blob/main/Space-Invaders/assets/Tela%20inicial.png)
+![Jogo em Andamento](Space-Invaders/assets/Jogo modo dificil.png)
 
 ## Contribuição
 
