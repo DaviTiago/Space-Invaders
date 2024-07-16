@@ -26,7 +26,7 @@ A criação do game Space Invaders teve o intuito de praticar os conceitos de Pr
 ## Imagens do Jogo
 
 ![Tela Inicial](https://github.com/DaviTiago/Space-Invaders/blob/main/Space-Invaders/assets/Tela%20inicial.png)
-![Jogo em Andamento](Space-Invaders/assets/Jogo modo dificil.png)
+![Jogo em Andamento](https://github.com/DaviTiago/Space-Invaders/blob/main/Space-Invaders/assets/Jogo%20modo%20dificil.png)
 
 ## Contribuição
 
